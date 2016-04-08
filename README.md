@@ -28,5 +28,7 @@ Here is an example:
 
 import com.daloji.dongle.SmsDongle;
 
-SmsDongle sms = new SmsDongle();
+
+SmsDongle sms = new SmsDongle(); 
+
 sms.sendSmS("+3312345678","message depuis une cle 3G ");
