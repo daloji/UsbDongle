@@ -1,7 +1,15 @@
 package com.daloji.dongle.exception;
 
+import com.daloji.dongle.SystemLoadCustom;
 
-
+/**
+ *  custom exception for all invalid configuration
+ * 
+ * @author Johan Boris IANTILA
+ * @since USBDongle 1.0
+ * @see InvalidConfigurationException
+ *
+ */
 public class InvalidConfigurationException extends Exception
 {
 
