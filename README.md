@@ -36,7 +36,7 @@ sms.sendSmS("+3312345678","message depuis une cle 3G ");
 - you can have this kind of problem
   * /dev/ttyUSB0: Permission non accordée (for french language)
   * /dev/ttyUSB0: Permission denied
-  * 
+  
 This is because the device file of the serial port does not have permissions to allow to currently logged in user to "read" or "write" to the serial device
  add the user to the “dialout” supplementary group for fix it 
    sudo usermod -a -G dialout <username>
