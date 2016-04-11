@@ -27,9 +27,9 @@ Before using this  make sure to:
 Building
 --------
 
-UsBDongle Api contains both Java and C code, and is built with Makefile
+UsBDongle Api contains both Java and C code,your variable JAVA_HOME must be set. this Api  is built with Makefile
 To build Java and static library, just run the following
-commands:
+commands: 
 
     $ make all
 
@@ -51,5 +51,5 @@ Here is an example:
   
 This is because the device file of the serial port does not have permissions to allow to currently logged in user to "read" or "write" to the serial device
  add the user to the “dialout” supplementary group for fix it 
-  * sudo usermod -a -G dialout  yourUsername
-  * sudo chmod a+rw /dev/ttyUSB0
+     $ sudo usermod -a -G dialout  yourUsername
+     $sudo chmod a+rw /dev/ttyUSB0
