@@ -24,16 +24,26 @@ This apps  work with the folowing UMTS cards:
 Before using this  make sure to:
 * Disable PIN code on your SIM card
 
+Building
+--------
 
+UsBDongle Api contains both Java and C code, and is built with Makefile
+To build Java and static library, just run the following
+commands:
+
+    $ make all
+
+
+
+Using UsbDongle API
+--------
 Here is an example:
 
 
-import com.daloji.dongle.SmsDongle;
-
-
-SmsDongle sms = new SmsDongle(); 
-
-sms.sendSmS("+3312345678","message depuis une cle 3G ");
+     import com.daloji.dongle.SmsDongle;
+     
+    SmsDongle sms = new SmsDongle(); 
+    sms.sendSmS("+3312345678","message depuis une cle 3G ");
 
 - you can have this kind of problem
   * /dev/ttyUSB0: Permission non accordée (for french language)
