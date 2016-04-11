@@ -6,6 +6,14 @@ This  is in alpha stage.
 I am not responsible if this apps  will eat your money on
 your SIM card or do any unpredicted things
 
+
+Supported features:
+* Send SMS and receive SMS
+
+next features:
+* mobile banking money (send and receive)
+
+#Requirement
 Please use Linux architecture recommended. For this moment, you can use only one dongle USB at the same time 
 * Windows is not supported right now  .
 
@@ -16,12 +24,6 @@ This apps  work with the folowing UMTS cards:
 Before using this  make sure to:
 * Disable PIN code on your SIM card
 
-
-Supported features:
-* Send SMS and receive SMS
-
-next features:
-* mobile banking money (send and receive)
 
 Here is an example:
 
