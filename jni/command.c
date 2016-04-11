@@ -1,14 +1,33 @@
+/**
+ * \file command.c
+ * \brief bluid all command ussd and sms.
+ * \author Johan Boris Iantila
+ * \version 0.1
+ * \date 21/01/2016
+ *
+ *
+ */
+
 #include <string.h>			
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
- #include <fcntl.h>
- #include <unistd.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <errno.h>
 #include "command.h"
 #include <termios.h>  
 
+static char *USB_TTY = "/dev/ttyUSB1";
+
+/**
+ * \fn createSmsCommand 
+ * \brief  create sms structure with destination phone number and text message
+ * \param phoneNumber destination phone number.
+ * \param message text message
+ * \return smscommand structure 
+ **/
 t_smscommand *createSmsCommand(const char* phoneNumber, const char* message){
 	t_smscommand *smscommand = NULL;
 	if(phoneNumber == NULL || message == NULL){
@@ -31,14 +50,13 @@ t_smscommand *createSmsCommand(const char* phoneNumber, const char* message){
     return smscommand;
 }
 
-/*!
- * \brief Enque an SMS message
- * \param cpvt -- cpvt structure
- * \param number -- the destination of the message
- * \param msg -- utf-8 encoded message
- */
- /* SMS sending */
-int enqueing_sms_pdu(int fd,t_smscommand *smscommand ){
+/**
+ * \fn enqueing_sms_pdu 
+ * \brief  forge pdu and send command AT to serial port
+ * \param smscommand 
+ * \return 
+ **/
+int enqueing_sms_pdu(t_smscommand *smscommand ){
 	
 	char * ptr = (char *) smscommand->pduBuffer;
 	char buf[8+25+1];
@@ -83,13 +101,11 @@ int enqueing_sms_pdu(int fd,t_smscommand *smscommand ){
 		return -ENOMEM;
 	}
    
-   int  fds=openttyUSB("/dev/ttyUSB1");
+   int  fds=openttyUSB(USB_TTY);
    sendcommand(fds, at_cmd[0].data);
    sleep(4);
    sendcommand(fds, at_cmd[1].data);
    
-   printf("********  head %s  -----  %d \n   ******\n",at_cmd[0].data,strlen(at_cmd[0].data));
-   printf("******** body %s ----- %d \n   ******\n",at_cmd[1].data,strlen(at_cmd[1].data));
 
 
    //release all memory
@@ -127,10 +143,20 @@ void sendcommand(int fd, const char *buf){
 		buf += out_count;
 		total += out_count;
 	}
+}
 
-
-
-
+void free_sms_cmd_memory(t_smscommand *smscommand){
+	if(smscommand == NULL) 
+	    return;
+   if(smscommand->messages)
+		free(smscommand->messages);
+  
+  if(smscommand->phoneNumber)
+		free(smscommand->phoneNumber);
+		
+   if(smscommand->pduBuffer)
+		free(smscommand->pduBuffer);
+	//free(smscommand);
 }
 
 

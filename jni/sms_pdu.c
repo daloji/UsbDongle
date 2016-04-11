@@ -453,16 +453,4 @@ ssize_t str_recode(recode_direction_t dir, str_encoding_t encoding, const char* 
 	return -EINVAL;
 }
 
-void free_sms_cmd_memory(t_smscommand *smscommand){
-	if(smscommand == NULL) 
-	    return;
-   if(smscommand->messages)
-		free(smscommand->messages);
-  
-  if(smscommand->phoneNumber)
-		free(smscommand->phoneNumber);
-		
-   if(smscommand->pduBuffer)
-		free(smscommand->pduBuffer);
-	free(smscommand);
-}
+
