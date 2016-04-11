@@ -51,5 +51,7 @@ Here is an example:
   
 This is because the device file of the serial port does not have permissions to allow to currently logged in user to "read" or "write" to the serial device
  add the user to the “dialout” supplementary group for fix it 
- ```$ sudo usermod -a -G dialout  yourUsername
-   $sudo chmod a+rw /dev/ttyUSB0```
+ ```
+   $ sudo usermod -a -G dialout  yourUsername
+   $sudo chmod a+rw /dev/ttyUSB0
+  ```
