@@ -12,7 +12,7 @@ help:
 	@echo '   make jni-compile                 compile native C code               '
 	@echo '   make clean                       remove generated shared library     '
 	@echo '                                                                        '
-	@echo "Note: To work from Java IDE you'll probably need only jni-compile target"
+	@echo "Note: Variable JAVA_HOME must be set  "
 
 jni-compile:
 	$(CC) $(SRC_FILE) -I $(JAVA_HOME)/include/ -o $(SHARED_LIBS) -shared 
