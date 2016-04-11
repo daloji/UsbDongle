@@ -17,7 +17,7 @@ next features:
 Please use Linux architecture recommended. For this moment, you can use only one dongle USB at the same time 
 * Windows is not supported right now  .
 
-This apps  work with the folowing UMTS cards:
+This Api  work with the folowing UMTS cards:
 * Huawei but only (E1752 and E1552) verified
 * ZTE
 
