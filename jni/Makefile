@@ -1,9 +1,9 @@
 CC=         gcc
 SHARED_LIBS = libUsbDongle.so
-SRC_FILE = usbdongle.c\
-		command.c \
-		hexa.c \
-		sms_pdu.c
+SRC_FILE = jniusbdongle.c\
+	   command.c \
+	   hexa.c \
+	   sms_pdu.c
 		   
 help:
 	@echo 'Makefile only for JNI                                                 '
