@@ -1,5 +1,7 @@
 package com.daloji.dongle;
 
+import com.daloji.dongle.exception.InvalidConfigurationException;
+
 /**
  *   this class manager all command  for USB Dongle
  * 
@@ -26,7 +28,12 @@ public class SmsDongle {
     */
 	public void sendSmS(String number,String messages){
 		if(core !=null){
-			core.sendSMS(number, messages);
+			try {
+				core.sendSMS(number, messages);
+			} catch (InvalidConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -39,7 +46,12 @@ public class SmsDongle {
 	public float getBalanceMobileBanking(String command){
 		float balance = 0;
 		if(core !=null){
-			balance = core.getBalanceMobileBanking(command);
+			try {
+				balance = core.getBalanceMobileBanking(command);
+			} catch (InvalidConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return balance;
 	}
@@ -52,7 +64,12 @@ public class SmsDongle {
     */
 	public void transfertMobileBanking(String phonenumber,float amount,String command){
 		if(core !=null){
-			core.transfertMobileBanking(phonenumber,amount,command);
+			try {
+				core.transfertMobileBanking(phonenumber,amount,command);
+			} catch (InvalidConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
