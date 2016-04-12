@@ -1,0 +1,33 @@
+
+<project default="run">
+
+	<property name="src.dir"     value="src"/>
+	<property name="bin.dir"   value="bin"/>
+	<property name="jar.dir" value="exe"/>
+	<property name="lib.dir" value="lib"/>
+	
+	<target name="clean">
+		<delete dir="${bin.dir}"/>
+		<delete dir="${jar.dir}"/>
+		<echo message="cleaning all object"/>
+	</target>
+	
+
+<target name="compile" depends="clean">
+	<mkdir dir="${bin.dir}"/>
+	<javac  includeantruntime="false" srcdir="${src.dir}" destdir="${bin.dir}" > 
+	</javac>
+	<mkdir dir="${bin.dir}/lib"/>
+	<copydir src="${lib.dir}"  dest="${bin.dir}/lib"/>
+	<echo message="compile all java file"/>
+</target>
+
+
+<target name="jar">
+<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/UsbDongle.jar" basedir="${bin.dir}">
+	</jar>
+<echo message="Create usbdongle jar file"/>
+</target>
+
+</project>
