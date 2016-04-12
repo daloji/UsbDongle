@@ -9,7 +9,7 @@ import java.io.OutputStream;
 
 import javax.activity.InvalidActivityException;
 
-import com.daloji.dongle.exception.InvalidConfigurationException;
+import com.daloji.dongle.InvalidConfigurationException;
 
 /**
  *  Custom System.loadLibrary for loading  native shared library from current jar archive

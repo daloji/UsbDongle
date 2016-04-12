@@ -1,6 +1,6 @@
 package com.daloji.dongle;
 
-import com.daloji.dongle.exception.InvalidConfigurationException;
+import com.daloji.dongle.InvalidConfigurationException;
 
 /**
  *   this class manager all command  for USB Dongle

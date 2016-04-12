@@ -1,6 +1,6 @@
 package com.daloji.dongle;
 
-import com.daloji.dongle.exception.InvalidConfigurationException;
+import com.daloji.dongle.InvalidConfigurationException;
 
 /**
  *  Helper from loading shared library and native methodse
