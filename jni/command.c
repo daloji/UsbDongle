@@ -115,7 +115,13 @@ int enqueing_sms_pdu(t_smscommand *smscommand ){
 }
 
 
-
+/**
+ * \fn sendcommand 
+ * \brief send command AT to serial port
+ * \param fd pointer to serial port
+ * \param command to send
+ * \return 
+ **/
 void sendcommand(int fd, const char *buf){
     //int i = strlen(str);
    // write(fd, str, i);
@@ -145,6 +151,12 @@ void sendcommand(int fd, const char *buf){
 	}
 }
 
+
+/**
+ * \fn free_sms_cmd_memory 
+ * \brief release all memory allocate
+ * \param smscommand to send
+ **/
 void free_sms_cmd_memory(t_smscommand *smscommand){
 	if(smscommand == NULL) 
 	    return;
