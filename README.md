@@ -4,7 +4,7 @@ UsBDongle is a JAVA  API  allow  you to send SMS and manage your mobile banking 
 Warning 
 This  is in alpha stage.
 I am not responsible if this apps  will eat your money on
-your SIM card or do any unpredicted things
+your SIM card or do any unpredicted things .you should know exactly what you do if you modify the source code
 
 
 Supported features:
