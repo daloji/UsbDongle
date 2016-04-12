@@ -1,3 +1,12 @@
+/**
+ * \file command.h
+ * \author Johan Boris Iantila
+ * \version 0.1
+ * \date 21/01/2016
+ *
+ *
+ */
+
 #ifndef COMMAND_H
 #define COMMAND_H
 #define BUFFER_SIZE 2048
