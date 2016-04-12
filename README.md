@@ -1,17 +1,19 @@
 # UsbDongle
-UsBDongle is a JAVA  API  that allow  you to send sms and manage your mobile banking account and ussd command
+UsBDongle is a JAVA  API  allow  you to send SMS and manage your mobile banking account and USSD command
 
 Warning 
 This  is in alpha stage.
 I am not responsible if this apps  will eat your money on
-your SIM card or do any unpredicted things
+your SIM card or do any unpredicted things .you should know exactly what you do if you modify the source code
 
 
 Supported features:
 * Send SMS and receive SMS
 
 next features:
-* mobile banking money (send and receive)
+* transfert money by mobile banking money 
+* get mobile banking money balance 
+
 
 #Requirement
 Linux architecture is mandatory.For this moment, you can use only one dongle USB at the same time 
