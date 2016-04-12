@@ -11,7 +11,9 @@ Supported features:
 * Send SMS and receive SMS
 
 next features:
-* mobile banking money (send and receive)
+* transfert money by mobile banking money 
+* get mobile banking money balance 
+
 
 #Requirement
 Linux architecture is mandatory.For this moment, you can use only one dongle USB at the same time 
