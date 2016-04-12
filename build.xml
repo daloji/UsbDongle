@@ -18,13 +18,13 @@
 	<javac  includeantruntime="false" srcdir="${src.dir}" destdir="${bin.dir}" > 
 	</javac>
 	<mkdir dir="${bin.dir}/lib"/>
-	<copydir src="${lib.dir}"  dest="${bin.dir}/lib"/>
 	<echo message="compile all java file"/>
 </target>
 
 
 <target name="jar">
 <mkdir dir="${jar.dir}"/>
+<copydir src="${lib.dir}"  dest="${bin.dir}/lib"/>
 	<jar destfile="${jar.dir}/UsbDongle.jar" basedir="${bin.dir}">
 	</jar>
 <echo message="Create usbdongle jar file"/>
