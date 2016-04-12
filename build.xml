@@ -3,7 +3,7 @@
 
 	<property name="src.dir"     value="src"/>
 	<property name="bin.dir"   value="bin"/>
-	<property name="jar.dir" value="exe"/>
+	<property name="jar.dir" value="jar"/>
 	<property name="lib.dir" value="lib"/>
 	
 	<target name="clean">
