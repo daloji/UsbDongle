@@ -1,5 +1,5 @@
 # UsbDongle
-UsBDongle is a JAVA  API  allow  you to send SMS and manage your mobile banking account and ussd command
+UsBDongle is a JAVA  API  allow  you to send SMS and manage your mobile banking account and USSD command
 
 Warning 
 This  is in alpha stage.
