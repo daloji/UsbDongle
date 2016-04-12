@@ -19,7 +19,7 @@
 #include "command.h"
 #include <termios.h>  
 
-static char *USB_TTY = "/dev/ttyUSB1";
+static char *USB_TTY = "/dev/ttyUSB0";
 
 /**
  * \fn createSmsCommand 
@@ -102,16 +102,16 @@ int enqueing_sms_pdu(t_smscommand *smscommand ){
 	}
    
    int  fds=openttyUSB(USB_TTY);
+   
+   printf("command AT  %s",at_cmd[0].data);
    sendcommand(fds, at_cmd[0].data);
    sleep(4);
+   printf("command pdu  %s",at_cmd[1].data);
    sendcommand(fds, at_cmd[1].data);
    
-
-
    //release all memory
    free(at_cmd[0].data);
    free(at_cmd[1].data);
-	//return at_queue_insert_task(cpvt, at_cmd, ITEMS_OF(at_cmd), 0, (struct at_queue_task **)id);
 }
 
 
@@ -123,9 +123,7 @@ int enqueing_sms_pdu(t_smscommand *smscommand ){
  * \return 
  **/
 void sendcommand(int fd, const char *buf){
-    //int i = strlen(str);
-   // write(fd, str, i);
-   // if (i>0 && str[i-1]!='\r') write(fd, "\r", 1);
+
    ssize_t out_count;
 	size_t total = 0;
 	unsigned errs = 10;
@@ -172,6 +170,13 @@ void free_sms_cmd_memory(t_smscommand *smscommand){
 }
 
 
+
+/**
+ * \fn openttyUSB 
+ * \brief  open serial port /dev/ttyUSB*
+ * \param dev name of device port.
+ * \return  device pointer
+ **/
 int openttyUSB (const char* dev){
 	int		flags;
 	int		pid;
@@ -218,6 +223,11 @@ int openttyUSB (const char* dev){
 	return fd;
 }
 
+/**
+ * \fn listDevice 
+ * \brief  list of device available
+ * \return t_device list device 
+ **/
 t_device* listDevice(){
  	
 
