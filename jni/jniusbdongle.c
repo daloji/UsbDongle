@@ -17,8 +17,7 @@
 
 
 void JNU_ThrowException(JNIEnv *env,jobject jobj,const char* messages){
-	printf(" ************ JNU_ThrowByName  ****************\n");
-	
+
    jthrowable exc;
    jclass cls = (*env)->GetObjectClass(env, jobj);
    jmethodID mid =(*env)->GetMethodID(env, cls, "jnicallback", "()V");
