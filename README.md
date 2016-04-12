@@ -14,7 +14,7 @@ next features:
 * mobile banking money (send and receive)
 
 #Requirement
-Please use Linux architecture recommended. For this moment, you can use only one dongle USB at the same time 
+Linux architecture is mandatory.For this moment, you can use only one dongle USB at the same time 
 * Windows is not supported right now  .
 
 This Api  work with the folowing UMTS cards:
