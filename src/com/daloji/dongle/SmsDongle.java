@@ -28,7 +28,12 @@ public class SmsDongle {
 	 */
 	public void sendSmS(String number,String messages){
 		if(core !=null){
-			core.sendSMS(number, messages);
+			try {
+				core.sendSMS(number, messages);
+			} catch (InvalidConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

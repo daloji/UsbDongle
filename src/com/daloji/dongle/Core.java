@@ -12,12 +12,15 @@ import com.daloji.dongle.exception.InvalidConfigurationException;
  */
 public class Core {
 	
-	public native void sendSMS(String phonenumber,String messages);
+	public native void sendSMS(String phonenumber,String messages) throws InvalidConfigurationException;
 
 	public native float getBalanceMobileBanking(String command);
 	
 	public native void transfertMobileBanking(String phonenumber,float amount,String command);
 	
+	private void jnicallback() throws InvalidConfigurationException{
+		throw new InvalidConfigurationException();
+	}
 	static {
 		
 			try {
