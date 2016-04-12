@@ -1,5 +1,5 @@
 SRC_DIRECTORY = src/com/daloji/dongle
-BIN_DIRECTORY = com/daloji/dongle
+BIN_DIRECTORY = bin/com/daloji/dongle
 JAR_FILE = usbDongle.jar
 
 help:
@@ -13,10 +13,10 @@ help:
 
 
 all:clean
-	#javac -d  .  $(SRC_DIRECTORY)/*.java
+	ant compile
 	javah -d jni -jni -classpath  src com.daloji.dongle.Core
 	make -C jni  all
-	jar -cvf $(JAR_FILE)  $(BIN_DIRECTORY) lib
+	ant jar
 	
 	
    

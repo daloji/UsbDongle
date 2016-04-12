@@ -16,6 +16,7 @@ help:
 
 jni-compile:
 	$(CC) $(SRC_FILE) -I $(JAVA_HOME)/include/ -o $(SHARED_LIBS) -shared 
+	mkdir -p ../lib
 	mv $(SHARED_LIBS) ../lib
      
 all : clean  jni-compile
