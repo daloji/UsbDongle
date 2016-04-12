@@ -33,7 +33,7 @@ commands:
 
     $ make all
 
-
+after build you can find  usbDongle.jar inside  jar directory
 
 Using UsbDongle API
 --------
