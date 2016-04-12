@@ -13,6 +13,36 @@
 #include "command.h"
 #include "sms_pdu.h"
 #include "com_daloji_dongle_Core.h"
+
+
+
+void JNU_ThrowException(JNIEnv *env,jobject jobj,const char* messages){
+	printf(" ************ JNU_ThrowByName  ****************\n");
+	
+   jthrowable exc;
+   jclass cls = (*env)->GetObjectClass(env, jobj);
+   jmethodID mid =(*env)->GetMethodID(env, cls, "jnicallback", "()V");
+   
+   if (mid == NULL){
+	return;
+   }
+   (*env)->CallVoidMethod(env, jobj, mid);
+   exc = (*env)->ExceptionOccurred(env);
+   if(exc){
+	 jclass newExcCls;
+	 (*env)->ExceptionDescribe(env);
+	 (*env)->ExceptionClear(env);
+     newExcCls = (*env)->FindClass(env,"com/daloji/dongle/exception/InvalidConfigurationException");
+    
+     if (newExcCls == NULL) {
+		return;
+	 }
+	 
+	(*env)->ThrowNew(env, newExcCls, messages);
+  }
+
+}
+
 /**
  * \fn Java_com_daloji_dongle_Core_sendSMS
  * \brief  send SMS  using USB Dongle
@@ -22,27 +52,22 @@
  * \param jnumber destination phone number .
  * \param jmessage  message to send.
  */
-
 JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_sendSMS(JNIEnv *env, jobject jobj, jstring jnumber, jstring jmessage){
    char *phoneNumber = NULL;
    char *messages = NULL;
    jthrowable exception;
    jclass cls = (*env)->GetObjectClass(env, jobj);
    int lengthPhoneNumber = (*env)->GetStringLength(env, jnumber);
-   if(lengthPhoneNumber<0){
-    //throw exception
-   }
-  
    phoneNumber = (char*) calloc(lengthPhoneNumber+1,sizeof(char));
    if(phoneNumber == NULL){
-    // throw excepetion
+     JNU_ThrowException(env,jobj,"allocation memory failed ");
    }
    (*env)->GetStringUTFRegion(env, jnumber, 0, lengthPhoneNumber, phoneNumber);
-   printf("destination phone number ! %s \n",phoneNumber);
+   printf("destination phone number : %s \n",phoneNumber);
    int lengthMessage = (*env)->GetStringLength(env, jmessage);
    messages = (char*) calloc(lengthMessage+1,sizeof(char));
    if(messages == NULL){
-    // throw excepetion
+    JNU_ThrowException(env,jobj,"allocation memory failed ");
    }
    (*env)->GetStringUTFRegion(env, jmessage, 0, lengthMessage, messages);
    printf("Text messages:  %s \n",messages);
@@ -91,4 +116,8 @@ JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_transfertMobileBanking
 	  
 	  	  //not yet implemented
 	  
-  }
+ }
+  
+  
+
+
