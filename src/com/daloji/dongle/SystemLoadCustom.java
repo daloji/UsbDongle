@@ -9,6 +9,8 @@ import java.io.OutputStream;
 
 import javax.activity.InvalidActivityException;
 
+import com.daloji.dongle.exception.InvalidConfigurationException;
+
 /**
  *  Custom System.loadLibrary for loading  native shared library from current jar archive
  * 
@@ -34,15 +36,15 @@ public class SystemLoadCustom {
      * @throws InvalidActivityException If temporary file creation or read/write operation fails or file 
      * 
      */
-	public static void loadLibrary(String path) throws InvalidActivityException{
+	public static void loadLibrary(String path) throws InvalidConfigurationException{
 		if(path == null){
-			throw new InvalidActivityException("library path name must be initialize");
+			throw new InvalidConfigurationException("library path name must be initialize");
 		}
 		
 		String[] parts = path.split("/");
 	    String filename = (parts.length > 1) ? parts[parts.length - 1] : null;
 	    if(filename == null){
-	    	throw new InvalidActivityException("error configuration shared library filename is null");
+	    	throw new InvalidConfigurationException("error configuration shared library filename is null");
 	    }
 	     
 		try {
@@ -62,11 +64,11 @@ public class SystemLoadCustom {
 			System.load(HOST_DIRECTORY+filename+LINUX_EXTENSION);
 		}
 		catch(FileNotFoundException ex){
-			throw new InvalidActivityException(ex.getMessage() + " in the specified directory.");
+			throw new InvalidConfigurationException(ex.getMessage() + " in the specified directory.");
 			
 		}
 		catch(IOException e){
-			throw new InvalidActivityException(e.getMessage());  
+			throw new InvalidConfigurationException(e.getMessage());  
 		}
 		
 	}
