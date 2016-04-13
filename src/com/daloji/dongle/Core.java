@@ -14,9 +14,9 @@ public class Core {
 	
 	public native void sendSMS(String phonenumber,String messages) throws InvalidConfigurationException;
 
-	public native float getBalanceMobileBanking(String command);
+	public native float getBalanceMobileBanking(String command) throws InvalidConfigurationException;;
 	
-	public native void transfertMobileBanking(String phonenumber,float amount,String command);
+	public native void transfertMobileBanking(String phonenumber,float amount,String command) throws InvalidConfigurationException;
 	
 	private void jnicallback() throws InvalidConfigurationException{
 		throw new InvalidConfigurationException();
