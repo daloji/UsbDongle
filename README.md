@@ -18,10 +18,6 @@ next features:
 #Requirement
 Linux architecture is mandatory.For this moment, you can use only one dongle USB at the same time 
 * Windows is not supported right now  .
-* JAVA_HOME variable must be set
-* gcc compiler 
-* ant 
-
 This Api  work with the folowing UMTS cards:
 * All Huawei  card but only (E1752 and E1552) verified
 * ZTE
@@ -39,6 +35,11 @@ commands:
     $ make all
 
 after build you can find  usbDongle.jar inside **jar** directory
+
+**requirement for build**
+* JAVA_HOME variable must be set
+* gcc compiler 
+* ant 
 
 Using UsbDongle API
 --------
