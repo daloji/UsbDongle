@@ -3,7 +3,7 @@ package com.daloji.dongle;
 import com.daloji.dongle.InvalidConfigurationException;
 
 /**
- *  Helper from loading shared library and native methodse
+ *  Helper for loading shared library and native methodse
  * 
  * @author Johan Boris IANTILA
  * @since USBDongle 1.0
