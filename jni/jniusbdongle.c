@@ -31,7 +31,7 @@ void JNU_ThrowException(JNIEnv *env,jobject jobj,const char* messages){
 	 jclass newExcCls;
 	 (*env)->ExceptionDescribe(env);
 	 (*env)->ExceptionClear(env);
-     newExcCls = (*env)->FindClass(env,"com/daloji/dongle/exception/InvalidConfigurationException");
+     newExcCls = (*env)->FindClass(env,"com/daloji/dongle/InvalidConfigurationException");
     
      if (newExcCls == NULL) {
 		return;
