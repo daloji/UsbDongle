@@ -1,7 +1,7 @@
 #ifndef USB_DONGLE_SMS_PDU_H_INCLUDED
 #define USB_DONGLE_SMS_PDU_H_INCLUDED
 #include "command.h"
-
+#include "hexa.h"
 #define TYPE_ADDRESS_SMSC 0x91
 
 
@@ -103,5 +103,7 @@ char pdu_digit2code(char digit);
 int pdu_parse_sca(char ** pdu, size_t * length);
 
 int pdu_store_phonenumber(char* buffer, const char* number, unsigned length);
+
+ssize_t str_recode(recode_direction_t dir, str_encoding_t encoding, const char* in, size_t in_length, char* out, size_t out_size);
 
 #endif

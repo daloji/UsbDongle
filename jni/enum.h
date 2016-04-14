@@ -102,4 +102,6 @@ typedef enum {
 	RES_MAX = RES_CCWA,
 } at_res_t;
 
+
+
 #endif

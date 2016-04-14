@@ -15,12 +15,25 @@
 #include "enum.h"	
 
 typedef struct smscommand t_smscommand;
+typedef struct ussdcommand t_ussdcommand;
 typedef struct device t_device;
+typedef struct devicestate t_devicestate;
 
 struct smscommand{
   char *pduBuffer;
   char *messages;
   char *phoneNumber;
+  char *error_message;
+};
+
+struct ussdcommand{
+  char *command;
+  char *error_message;
+};
+
+struct devicestate{
+	char *error;
+	int state;
 };
 
 struct device{
@@ -50,11 +63,19 @@ typedef struct at_smscommand{
 } at_queue_cmd_t;
 
 
+#define ATQ_CMD_DECLARE_DYNFT(cmd,res,flags,s,u) { (cmd), (res),  flags & ~ATQ_CMD_FLAG_STATIC, {(s), (u)}, 0,      0 }
+#define ATQ_CMD_DECLARE_DYNF(cmd,res,flags)	ATQ_CMD_DECLARE_DYNFT(cmd,res,flags,ATQ_CMD_TIMEOUT_2S,0)
+//#define ATQ_CMD_DECLARE_DYNF(cmd,res,flags)	{ (cmd), (res),  flags & ~ATQ_CMD_FLAG_STATIC, {ATQ_CMD_TIMEOUT_2S, 0}, 0,      0 }
+#define ATQ_CMD_DECLARE_DYN(cmd)		ATQ_CMD_DECLARE_DYNF(cmd, RES_OK, ATQ_CMD_FLAG_DEFAULT)
+
+
+
 t_smscommand *createSmsCommand(const char* phoneNumber, const char* message);
+t_ussdcommand *createUssdCommand(const char* command);
 
 void sendcommand(int fd, const char *str);
 
-int openttyUSB (const char* dev);
+t_devicestate*  openttyUSB (const char* dev);
 #endif 
 
 

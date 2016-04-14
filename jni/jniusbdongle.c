@@ -55,7 +55,14 @@ JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_sendSMS(JNIEnv *env, jobject 
    char *phoneNumber = NULL;
    char *messages = NULL;
    jthrowable exception;
-   jclass cls = (*env)->GetObjectClass(env, jobj);
+   if(jmessage == NULL){
+	   JNU_ThrowException(env,jobj,"text message null ");
+	   return;
+   }
+     if(jnumber == NULL){
+	   JNU_ThrowException(env,jobj,"destination phone number  null ");
+	   return;
+   }
    int lengthPhoneNumber = (*env)->GetStringLength(env, jnumber);
    phoneNumber = (char*) calloc(lengthPhoneNumber+1,sizeof(char));
    if(phoneNumber == NULL){
@@ -72,12 +79,34 @@ JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_sendSMS(JNIEnv *env, jobject 
    printf("Text messages:  %s \n",messages);
    
    t_smscommand *smscommand = createSmsCommand(phoneNumber,messages);
-   int rep = create_pdu(smscommand);
-   enqueing_sms_pdu(smscommand );
+   if(smscommand != NULL){
+	 int rep = create_pdu(smscommand);
+     if(rep > 0){
+		 int res = enqueing_sms_pdu(smscommand );
+         if(res<0){
+	        if(smscommand->error_message != NULL){
+	           JNU_ThrowException(env,jobj,smscommand->error_message);
+               free(smscommand->error_message);
+	        }
+         }
+    
+         if(smscommand->pduBuffer != NULL)free(smscommand->pduBuffer);  
+         
+         if(smscommand->messages != NULL)free(smscommand->messages);  
+	   
+	 }else{
+		  JNU_ThrowException(env,jobj,"failed to send sms"); 
+	 }
+   }else{
+      JNU_ThrowException(env,jobj,"failed to create sms command phone number or text message is null");
+   }
+  
+;
+   if(phoneNumber != NULL)
+      free(phoneNumber);
    
-   //free_sms_cmd_memory(smscommand);
-   free(phoneNumber);
-   free(messages);
+   if(messages)
+      free(messages);
 } 
 
 
@@ -94,8 +123,36 @@ JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_sendSMS(JNIEnv *env, jobject 
  */
 JNIEXPORT jfloat JNICALL Java_com_daloji_dongle_Core_getBalanceMobileBanking
   (JNIEnv *env, jobject jobj, jstring jcommand){
-	  
-	  //not yet implemented
+  
+   char *command = NULL;
+   if(jcommand == NULL){
+     JNU_ThrowException(env,jobj,"command ussd null");
+     return;
+   }
+  
+   int lengthCommand = (*env)->GetStringLength(env, jcommand);
+   command = (char*) calloc(lengthCommand+1,sizeof(char));
+  
+   if(command == NULL){
+     JNU_ThrowException(env,jobj,"allocation memory failed ");
+   }
+   (*env)->GetStringUTFRegion(env, jcommand, 0, lengthCommand, command);
+    t_ussdcommand *ussdcommand = createUssdCommand(command);
+    if(ussdcommand != NULL){
+       int res = enqueing_ussd(ussdcommand);
+       if(res<0){
+	     if(ussdcommand->error_message != NULL){
+	       JNU_ThrowException(env,jobj,ussdcommand->error_message);
+           free(ussdcommand->error_message);
+	     }
+       }
+       if(ussdcommand->command != NULL){
+		 free(ussdcommand->command);  
+	   }
+	   free(ussdcommand);
+   }else{
+	   JNU_ThrowException(env,jobj,"Error command ussd null");   
+   }
  }
 
 
@@ -112,8 +169,8 @@ JNIEXPORT jfloat JNICALL Java_com_daloji_dongle_Core_getBalanceMobileBanking
  */
 JNIEXPORT void JNICALL Java_com_daloji_dongle_Core_transfertMobileBanking
   (JNIEnv *env, jobject jobj, jstring jphonenumber, jfloat jamount, jstring jcommand){
-	  
-	  	  //not yet implemented
+   char *phoneNumber = NULL;
+   char *messages = NULL;
 	  
  }
   
