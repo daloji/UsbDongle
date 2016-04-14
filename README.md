@@ -47,9 +47,9 @@ Using UsbDongle API
 Here is an example:
 
 
-     import com.daloji.dongle.SmsDongle;
+     import com.daloji.dongle.UsbDongle;
      
-    SmsDongle sms = new SmsDongle(); 
+    UsbDongle sms = new UsbDongle(); 
     sms.sendSmS("+3312345678","message depuis une cle 3G ");
 
 - you can have this kind of problem
